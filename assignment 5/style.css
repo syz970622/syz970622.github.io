@@ -1,0 +1,81 @@
+*{
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    padding: 10px;
+    color: white;
+    background-size: cover;
+    background-position: top center;
+    height: 961px;
+    width: 1920px;
+}
+
+p {
+    font-family:Podkova;
+    position:relative;
+    display: inline-block;
+    width:50%;
+    text-align: center;
+
+
+}
+
+.center{
+    text-align: center;
+}
+
+#logo{
+    position: absolute;
+
+}
+
+h1{
+    text-align: left;
+    font-size: 64px;
+    margin: 20px;
+
+}
+
+.menu {
+    color: white;
+    text-align: right;
+    text-decoration: none;
+    position: relative;
+    left: 620px;
+    bottom: 90px;
+    display: inline-block;
+    margin: 30px;
+    font-size: 24px;
+}
+
+.menu a{
+    position: relative;
+    bottom: 90px;
+    left: 620px;
+    text-align: right;
+    text-decoration: none;
+    color: white;
+}
+
+.Papyrus{
+    font-family:'Papyrus';
+}
+
+.Podkova{
+    font-family:'Podkova';
+}
+
+#allrolls{
+    position: relative;
+    text-align: center;
+    bottom: 100px;
+    font-family:'Podkova';
+    font-size: 56px;
+    color: white;
+    border: 7px solid #FFFFFF;
+    border-radius: 40px;
+    padding:10px;
+    margin:10px;
+}

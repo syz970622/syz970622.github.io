@@ -1,62 +1,7 @@
+
+
 *{
     box-sizing: border-box;
-}
-
-header {
-    position: fixed;
-    padding: 10px;
-    color: white;
-    background-size: cover;
-    background-position: top center;
-    height: 961px;
-    width: 1920px;
-}
-
-p {
-    font-family:Podkova;
-    position:relative;
-    display: inline-block;
-    width:50%;
-    text-align: center;
-
-
-}
-
-.center{
-    text-align: center;
-}
-
-#logo{
-    position: absolute;
-
-}
-
-h1{
-    text-align: left;
-    font-size: 64px;
-    margin: 20px;
-
-}
-
-.menu {
-    color: white;
-    text-align: right;
-    text-decoration: none;
-    position: relative;
-    left: 620px;
-    bottom: 90px;
-    display: inline-block;
-    margin: 30px;
-    font-size: 24px;
-}
-
-.menu a{
-    position: relative;
-    bottom: 90px;
-    left: 620px;
-    text-align: right;
-    text-decoration: none;
-    color: white;
 }
 
 .Papyrus{
@@ -67,15 +12,178 @@ h1{
     font-family:'Podkova';
 }
 
-#allrolls{
-    position: relative;
+header {
+    position: fixed;
+    background-size: cover;
+    background-position: top center;
+    z-index:20;
+    height: 897px;
+    width: 1890px;
+
+}
+
+
+.logo{
+    display: inline-block;
+    text-align: center
+
+}
+
+.name{
+    display: inline-block;
+    font-size: 64px;
+    margin:auto;
+    color:#9D392E;
+
+}
+
+.white{
+    color: white;
+}
+
+.menu {
+    display: inline-block;
+    float:right;
+    padding:10px;
+}
+
+ul {
+    float: right;
+    list-style-type: none;
+}
+
+ul li {
+    float: left;
+    margin: 20px;
+    font-size: 24px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+ol {
+    float: right;
+    list-style-type: none;
+}
+
+ol li {
+    float: left;
+    margin: 20px;
+    font-size: 24px;
+}
+
+ol li a {
+    text-decoration: none;
+    color: black;
+}
+
+p{
+    font-family:'Podkova';
+    font-style: normal;
+    font-variant: normal;
+    position:relative;
+    display: inline-block;
+    width:50%;
     text-align: center;
-    bottom: 100px;
+
+
+}
+
+.center{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+#allrolls{
+    width:30%;
+    position: relative;
+    bottom: 200px;
+    text-align: center;
     font-family:'Podkova';
     font-size: 56px;
     color: white;
     border: 7px solid #FFFFFF;
     border-radius: 40px;
     padding:10px;
-    margin:10px;
+    margin:auto;
+
 }
+
+#allrolls a{
+    text-decoration: none;
+    color:white;
+}
+
+
+
+/*rolls.html*/
+#morning{
+    text-align: center;
+    font-family: 'Papyrus';
+    font-size: 36px;
+    position: relative;
+    top:180px;
+}
+
+
+.container{
+    height: 800px;
+    width: 100%;
+    position:absolute;
+    top:300px;
+    text-align: center;
+}
+
+.grid{
+    width: 600px;
+    height: 390px;
+    display: inline-block;
+}
+
+.rollImg{
+    height:300px;
+}
+
+
+.price,.flavor,.cart{
+    display: inline-block;
+}
+
+.flavor{
+    margin:20px;
+    font-family: 'Abel';
+    font-size: 30px;
+}
+.price{
+    float: left;
+    margin:20px;
+    font-family: 'Abel';
+    font-size: 44px;
+}
+.cart{
+    float: right;
+    margin:20px;
+}
+/*this comes from https://stackoverflow.com/questions/14821087/horizontal-line-and-right-way-to-code-it-in-html-css*/
+hr.horizontal {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 3px solid black;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*hr.vertical{
+
+    height: 100px;
+    width: 1px;
+
+    border-top: 3px solid black;
+    display: inline-block;
+}*/

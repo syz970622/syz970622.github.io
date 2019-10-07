@@ -186,7 +186,15 @@ hr.horizontal {
     padding: 0;
 }
 
+#vertical1{
+    position: absolute;
+    left: 670px;
+}
 
+#vertical2{
+    position: absolute;
+    left: 1250px;
+}
 
 /*******************************product detail.html***************************************/
 
@@ -314,14 +322,4 @@ https://www.w3schools.com/howto/howto_css_image_text.asp*/
 
 .selected{
     color: #B9564B;
-}
-
-#vertical1{
-    position: absolute;
-    left: 670px;
-}
-
-#vertical2{
-    position: absolute;
-    left: 1250px;
 }

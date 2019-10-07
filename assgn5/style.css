@@ -189,11 +189,13 @@ hr.horizontal {
 #vertical1{
     position: absolute;
     left: 670px;
+    top: 300px;
 }
 
 #vertical2{
     position: absolute;
     left: 1250px;
+    top: 300px;
 }
 
 /*******************************product detail.html***************************************/

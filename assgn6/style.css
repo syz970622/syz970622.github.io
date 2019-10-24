@@ -1,4 +1,11 @@
 /****************index.html*****************/
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 *{
     box-sizing: border-box;
 }
@@ -50,6 +57,16 @@ header {
     display: inline-block;
     float:right;
     padding:10px;
+}
+
+#cartQty {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    width:40px;
+    height:40px;
+    text-align: center;
+    margin-left: 0px;
 
 }
 
@@ -342,4 +359,132 @@ https://www.w3schools.com/howto/howto_css_image_text.asp*/
 
 .selected{
     color: #B9564B;
+}
+
+
+/*******************************cart.html***************************************/
+#containerLeft{
+    display: inline-block;
+    position: absolute;
+    width: 1079px;
+    height: 797px;
+    left: 20px;
+    top: 200px;
+}
+
+#containerRight{
+    display: inline-block;
+    position: absolute;
+    width: 646px;
+    height: 797px;
+    left: 1189px;
+    top: 200px;
+    margin-left: 30px;
+}
+
+#lineV{
+    position: absolute;
+    left: 1169px;
+    top: 287px;
+}
+
+hr #cartGird{
+    height: 1px;
+    border-top: 1px solid black;
+}
+
+
+.box1, .box2, .box3, .box4{
+    display: inline-block;
+    font-size: 36px;
+    line-height: 40px;
+    height: 70px;
+}
+
+.cont1, .cont2, .cont3, .cont4{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 36px;
+    height: 170px;
+}
+
+.box1, .cont1{
+    text-align: left;
+    width: 408px;
+}
+
+.box2, .cont2{
+    text-align: center;
+    width: 258px;
+}
+
+.box3, .cont3{
+    text-align: center;
+    width: 187px;
+}
+
+.box4, .cont4{
+    text-align: center;
+    width: 181px;
+}
+
+.itemContainer{
+    width: 1079px;
+    height: 176px;
+}
+
+.cont3 #qty{
+    width: 86px;
+    height: 52px;
+    padding: 5px;
+    margin: 0px;
+}
+
+
+.cont1 #glazingText{
+    font-size: 30px;
+    margin: 0px;
+}
+
+#edit {
+    font-size: 18px;
+}
+
+.container1{
+    width: 746px;
+}
+
+.bigText {
+    font-size: 48px;
+    height: 70px;
+}
+
+.smallText {
+    font-size: 36px;
+}
+
+.inlineL{
+    display: inline-block;
+    width: 550px;
+    margin-top: 40px;
+}
+
+.inlineR{
+    display: inline-block;
+    margin-top: 40px;
+}
+
+.container2 {
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 20px;
+    background: #B9564B;
+    width: 646px;
+    height: 112px;
+}
+
+#checkout {
+    font-size: 64px;
+    margin-top:15px;
 }

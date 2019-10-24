@@ -401,12 +401,13 @@ hr #cartGird{
     height: 70px;
 }
 
-.cont1, .cont2, .cont3, .cont4{
+.cont1, .cont2, .cont3, .cont4, .cont5{
     display: inline-block;
     text-align: center;
-    vertical-align: middle;
+    vertical-align: top;
     font-size: 36px;
     height: 170px;
+    margin-top: 30px;
 }
 
 .box1, .cont1{
@@ -426,7 +427,12 @@ hr #cartGird{
 
 .box4, .cont4{
     text-align: center;
-    width: 181px;
+    width: 150px;
+}
+
+.cont5 {
+    width: 36px;
+    height: 36px;
 }
 
 .itemContainer{

@@ -44,6 +44,7 @@
         <div class="containerImg">
             <img id="display" src="display.png" alt="Rolls">
             <ol>
+                <!-- when image clicked, display clicked image -->
                 <li><img id="preview1" onClick="displayImg('preview1')" src="preview1.png" alt="Rolls"></li>
                 <li><img id="preview2" onClick="displayImg('preview2')" src="preview2.png" alt="Rolls"></li>
                 <li><img id="preview3" onClick="displayImg('preview3')" src="preview3.png" alt="Rolls"></li>
@@ -59,6 +60,7 @@
             <div id="glazingText">GLAZING: Please Choose</div>
 
             <div id="glazing">
+                <!-- when button clicked, hightlight clicked button -->
                 <button id="0" onClick="selectButton('0')" type="button">None</button>
                 <button id="1" onClick="selectButton('1')" type="button">Sugar Milk</button>
                 <button id="2" onClick="selectButton('2')" type="button">Vanilla Milk</button>
@@ -68,6 +70,7 @@
             <div id="qtyText">QTY: 1</div>
 
             <form>
+                <!-- when qty selected, record and update qty and price -->
                 <select id="qty" onClick="updateQty('qty'), updatePrice('qty')">
                         <option value=1>1</option>
                         <option value=3>3</option>

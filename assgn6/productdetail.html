@@ -35,7 +35,6 @@
                     <li>LOCATION</li>
                     <li><a href="about.html">ABOUT</a></li>
                     <li>CART</li>
-<!--                     <li id="cartQty">0</li> -->
                 </ol>
             </div>
 
@@ -43,11 +42,11 @@
 
 <!-- Left side -->
         <div class="containerImg">
-            <img class="display" src="display.png" alt="Rolls">
+            <img id="display" src="display.png" alt="Rolls">
             <ol>
-                <li><img class="preview" src="preview1.png" alt="Rolls"></li>
-                <li><img class="preview" src="preview2.png" alt="Rolls"></li>
-                <li><img class="preview" src="preview3.png" alt="Rolls"></li>
+                <li><img id="preview1" onClick="displayImg('preview1')" src="preview1.png" alt="Rolls"></li>
+                <li><img id="preview2" onClick="displayImg('preview2')" src="preview2.png" alt="Rolls"></li>
+                <li><img id="preview3" onClick="displayImg('preview3')" src="preview3.png" alt="Rolls"></li>
             </ol>
         </div>
 <!-- Right side -->
@@ -57,7 +56,7 @@
                 <div id="productPrice">$3</div>
             </div>
 
-            <div id="glazingText">GLAZING: Sugar Milk</div>
+            <div id="glazingText">GLAZING: Please Choose</div>
 
             <div id="glazing">
                 <button id="0" onClick="selectButton('0')" type="button">None</button>
@@ -78,11 +77,10 @@
                 </select>
             </form>
 
-
-            <div class="containerCartBig">
+            <div class="containerCartBig" onClick="getSelectedItem('qty')">
                 <div class="containerCartSmall">
                     <img class="cartImg" src="cart.png" alt="cart">
-                    <button class="addToCart" onClick="getSelectedItem('qty');">Add To Cart</button>
+                    <button class="addToCart">Add To Cart</button>
                 </div>
             </div>
 

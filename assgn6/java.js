@@ -2,24 +2,8 @@ var totalInCart = 0;
 
 var qtyExist = false;
 
-// function button(glazing, buttonId){
-//     this.id = buttonId;
-//     this.glazing = glazing;
-// }
-
-// button.prototype.selectGlazing = function(){
-//     document.getElementById(this.buttonId).style.color = "grey";
-// }
-
 function selectButton(button){
-    // var buttons = [new button("None", "0"),
-    //                 new button("Sugar Milk", "1"),
-    //                 new button("Vanilla Milk", "2"),
-    //                 new button("Chocolate", "3")]
 
-    // for (i = 0; i < 4; i++){
-    //     buttons[i].prototype.selectGlazing();
-    // }
     for (i = 0; i < 4; i++){
         document.getElementById(i).style.backgroundColor = "white";
     }
@@ -48,7 +32,6 @@ function showCart(){
     node.setAttribute("id", "cartQty");
     node.appendChild(textnode);
     document.getElementById("headerOl").appendChild(node);
-    console.log(textnode);
 }
 
 function updateCart(){
@@ -66,4 +49,6 @@ function getSelectedItem(selection){
     updateCart();
  }
 
-
+function displayImg(image){
+    document.getElementById("display").setAttribute("src", image +".png");
+}

@@ -15,7 +15,6 @@ header {
     position: fixed;
     background-size: cover;
     background-position: top center;
-/*    z-index:20;*/
     height: 170px;
     width: 1890px;
 }
@@ -34,7 +33,6 @@ header {
 .logo{
 /*    display: inline-block;*/
     text-align: center
-    z-index:1;
 }
 
 .name{
@@ -98,7 +96,7 @@ p{
     position: absolute;
     width: 100%;
     text-align: center;
-    z-index: -10;
+    z-index: -9;
 
 }
 
@@ -217,8 +215,12 @@ hr.horizontal {
 }
 
 .containerImg li{
-    display: inline;
+    display: inline-block;
+}
 
+#preview1, #preview2, #preview3{
+    width:83px;
+    height: auto;
 }
 
 .containerText{
@@ -253,6 +255,7 @@ hr.horizontal {
 }
 
 #glazing{
+    margin: 30px;
     height: 80px;
 
 }

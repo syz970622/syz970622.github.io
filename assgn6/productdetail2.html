@@ -5,6 +5,8 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <!-- fonts -->
         <link href="https://www.fonts.com/font/itc/papyrus?QueryFontType=Web&src=GoogleWebFonts" rel="stylesheet">
+        <!-- javascript -->
+        <script src="java.js" type="text/javascript"></script>
 
         <title>Product Detail</title>
         <meta charset="UTF-8">
@@ -22,66 +24,64 @@
             </div>
 
             <div class="name">
-                <div>BUNBUN</div>
-                <hr class="underline">
+                    <div>BUNBUN</div>
+                    <hr class="underline">
             </div>
 <!-- Constructing a navigation bar comes from
     https://www.w3schools.com/css/css_navbar.asp -->
-            <div class="menu">
-                <ol>
+            <div id="menu">
+                <ol id="headerOl">
                     <li><a href="rolls.html">ROLLS</a></li>
                     <li>LOCATION</li>
                     <li><a href="about.html">ABOUT</a></li>
                     <li>CART</li>
+<!--                     <li id="cartQty">0</li> -->
                 </ol>
             </div>
 
         </header>
+
 <!-- Left side -->
         <div class="containerImg">
-            <img class="display" src="display.png" alt="Rolls">
-
+            <img id="display" src="display.png" alt="Rolls">
             <ol>
-                <li><img class="preview" src="preview1.png" alt="Rolls"></li>
-                <li><img class="preview" src="preview2.png" alt="Rolls"></li>
-                <li><img class="preview" src="preview3.png" alt="Rolls"></li>
+                <li><img id="preview1" onClick="displayImg('preview1')" src="preview1.png" alt="Rolls"></li>
+                <li><img id="preview2" onClick="displayImg('preview2')" src="preview2.png" alt="Rolls"></li>
+                <li><img id="preview3" onClick="displayImg('preview3')" src="preview3.png" alt="Rolls"></li>
             </ol>
         </div>
 <!-- Right side -->
         <div class="containerText">
             <div class="product">
-                <h3 class="productName">ORIGINAL</h3>
-                <div class="productPrice">$3</div>
+                <h3 class="productName">BLACKBERRY</h3>
+                <div id="productPrice">$3</div>
             </div>
 
-            <div class="greyText">GLAZING: Vanilla Milk</div>
+            <div id="glazingText">GLAZING: Please Choose</div>
 
-            <div class="glazing">
-                <ol>
-                    <li>None</li>
-                    <li>Sugar Milk</li>
-                    <li id="selected">Vanilla Milk</li>
-                    <li>Chocolate</li>
-                </ol>
+            <div id="glazing">
+                <button id="0" onClick="selectButton('0')" type="button">None</button>
+                <button id="1" onClick="selectButton('1')" type="button">Sugar Milk</button>
+                <button id="2" onClick="selectButton('2')" type="button">Vanilla Milk</button>
+                <button id="3" onClick="selectButton('3')" type="button">Chocolate</button>
+
             </div>
 
-            <div class="greyText">QTY: 1</div>
+            <div id="qtyText">QTY: 1</div>
 
-            <form class="qty">
-                <select>
-                        <option value="1">1</option>
-                        <option value="3">3</option>
-                        <option value="6">6</option>
-                        <option value="9">9</option>
+            <form>
+                <select id="qty" onClick="updateQty('qty'), updatePrice('qty')">
+                        <option value=1>1</option>
+                        <option value=3>3</option>
+                        <option value=6>6</option>
+                        <option value=9>9</option>
                 </select>
             </form>
 
-            <br>
-
-            <div class="containerCartBig">
+            <div class="containerCartBig" onClick="getSelectedItem('qty')">
                 <div class="containerCartSmall">
                     <img class="cartImg" src="cart.png" alt="cart">
-                    <div class="addToCart">ADD TO CART</div>
+                    <button class="addToCart">Add To Cart</button>
                 </div>
             </div>
 

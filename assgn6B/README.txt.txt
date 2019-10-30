@@ -1,0 +1,1 @@
+Made an extra product detail page

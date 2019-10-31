@@ -389,8 +389,10 @@ https://www.w3schools.com/howto/howto_css_image_text.asp*/
 }
 
 hr #cartGird{
+    display: none;
     height: 1px;
     border-top: 1px solid black;
+    margin-bottom: 50px;
 }
 
 

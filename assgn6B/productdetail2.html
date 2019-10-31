@@ -13,10 +13,9 @@
     </head>
 
 
-    <body>
+    <body onload="getSelectedFlavor('ORIGINAL')">
 <!-- header -->
         <header class="Papyrus">
-
             <div class="center">
                 <a href="index.html">
                     <img class="logo" src="LOGO.png" alt="Rolls">
@@ -44,6 +43,7 @@
         <div class="containerImg">
             <img id="display" src="display.png" alt="Rolls">
             <ol>
+                <!-- when image clicked, display clicked image -->
                 <li><img id="preview1" onClick="displayImg('preview1')" src="preview1.png" alt="Rolls"></li>
                 <li><img id="preview2" onClick="displayImg('preview2')" src="preview2.png" alt="Rolls"></li>
                 <li><img id="preview3" onClick="displayImg('preview3')" src="preview3.png" alt="Rolls"></li>
@@ -52,24 +52,25 @@
 <!-- Right side -->
         <div class="containerText">
             <div class="product">
-                <h3 class="productName">BLACKBERRY</h3>
+                <h3 class="productName">ORIGINAL</h3>
                 <div id="productPrice">$3</div>
             </div>
 
             <div id="glazingText">GLAZING: Please Choose</div>
 
             <div id="glazing">
-                <button id="0" onClick="selectButton('0')" type="button">None</button>
-                <button id="1" onClick="selectButton('1')" type="button">Sugar Milk</button>
-                <button id="2" onClick="selectButton('2')" type="button">Vanilla Milk</button>
-                <button id="3" onClick="selectButton('3')" type="button">Chocolate</button>
-
+                <!-- when button clicked, hightlight clicked button -->
+                <button id="0" onClick="selectButton('0'), getSelectedButton('0')" type="button">None</button>
+                <button id="1" onClick="selectButton('1'), getSelectedButton('1')" type="button">Sugar Milk</button>
+                <button id="2" onClick="selectButton('2'), getSelectedButton('2')" type="button">Vanilla Milk</button>
+                <button id="3" onClick="selectButton('3'), getSelectedButton('3')" type="button">Chocolate</button>
             </div>
 
             <div id="qtyText">QTY: 1</div>
 
             <form>
-                <select id="qty" onClick="updateQty('qty'), updatePrice('qty')">
+                <!-- when qty selected, record and update qty and price -->
+                <select id="qty" onClick="getSelectedQty('qty'), updateQty(), updatePrice()">
                         <option value=1>1</option>
                         <option value=3>3</option>
                         <option value=6>6</option>
@@ -80,24 +81,27 @@
             <div class="containerCartBig" onClick="getSelectedItem('qty')">
                 <div class="containerCartSmall">
                     <img class="cartImg" src="cart.png" alt="cart">
-                    <button class="addToCart">Add To Cart</button>
+                    <button class="addToCart" onClick="recordChoice()">Add To Cart</button>
                 </div>
             </div>
 
         </div>
+
 <!-- detail description -->
         <div class="detail">
             <img class="frame" src="frame.png" alt="frame">
 
             <div class="title">
-                <div class="description">Description</div>
-                <div class="process selected">Process</div>
+                <div class="description selected">Description</div>
+                <div class="process">Process</div>
             </div>
 
             <div class="center">
-                <img src="process1.png" alt="process">
-                <img src="process2.png" alt="process">
-                <img src="process3.png" alt="process">
+                <p >
+                    Our signature cake and famous worldwide, the Lady M Mille Crêpes features no less than twenty paper-thin handmade crêpes layered with ethereal light pastry cream. Delicate and irresistible, the top is gently caramelized till golden. Sink right in; alternating crêpe and cream layers literally melt in your mouth, leaving a subtle sweet finish. Serves 10-14.
+                    <br><br>
+                    Allergens: Alcohol, Dairy, Eggs, Tree Nuts, Wheat
+                </p>
             </div>
 
         </div>

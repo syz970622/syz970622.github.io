@@ -1,4 +1,4 @@
-
+// using d3.js learned from https://github.com/d3/d3/blob/master/API.md
 // set the dimensions and margins of the graph
 var margin = {
     top: 40,
@@ -7,12 +7,13 @@ var margin = {
     left: 100
 };
 
-var pageWidth = 1300;           // size of the rectangle box that contains the graph
+var pageWidth = 1400;           // size of the rectangle box that contains the graph
 var pageHeight = 700;
 var width = 1300 - margin.left - margin.right;          // size of the graph
 var height = 600 - margin.top - margin.bottom;
 
-var minX = "1800";
+// dimensions of the graph
+var minX = "1827";
 var maxX = "2020";
 var minY = 0;
 var maxY = 150;
@@ -20,29 +21,30 @@ var radius = 3.5;
 var strokeWidth = 5;
 
 
-
+// linking all csv files
 var allDataFileList = [
-    "CSV/allData_UnitedStates.csv",
-    "CSV/allData_UnitedKingdom.csv",
-    "CSV/allData_China.csv",
-    "CSV/allData_Japan.csv",
-    "CSV/allData_Canada.csv",
-    "CSV/allData_Germany.csv",
-    "CSV/allData_France.csv",
-    "CSV/allData_Russia.csv"
+    "Assets/CSV/allData_UnitedStates.csv",
+    "Assets/CSV/allData_UnitedKingdom.csv",
+    "Assets/CSV/allData_China.csv",
+    "Assets/CSV/allData_Japan.csv",
+    "Assets/CSV/allData_Canada.csv",
+    "Assets/CSV/allData_Germany.csv",
+    "Assets/CSV/allData_France.csv",
+    "Assets/CSV/allData_Russia.csv"
     ]
 
 var eventsFileList = [
-    "CSV/events_UnitedStates.csv",
-    "CSV/events_UnitedKingdom.csv",
-    "CSV/events_China.csv",
-    "CSV/events_Japan.csv",
-    "CSV/events_Canada.csv",
-    "CSV/events_Germany.csv",
-    "CSV/events_France.csv",
-    "CSV/events_Russia.csv"
+    "Assets/CSV/events_UnitedStates.csv",
+    "Assets/CSV/events_UnitedKingdom.csv",
+    "Assets/CSV/events_China.csv",
+    "Assets/CSV/events_Japan.csv",
+    "Assets/CSV/events_Canada.csv",
+    "Assets/CSV/events_Germany.csv",
+    "Assets/CSV/events_France.csv",
+    "Assets/CSV/events_Russia.csv"
     ]
 
+// description of historical events
 var descriptionMap = new Map([
     ["Canada1936", ["Spanish Civil War", "The Mackenzie®CPapineau Battalion (a volunteer unit not authorized or supported by the Canadian government) fought on the Republican side in the Spanish Civil War (1936®C1939)"]],
     ["China1911", ["Battle of Yangxia", "Qing and Revolutionary Armies vie for control of Wuhan."]],
@@ -77,7 +79,7 @@ var descriptionMap = new Map([
     ["UnitedStates2014", ["Syrian and Iraqi intervention", "An American-led intervention in Iraq started on 15 June 2014, when President Barack Obama ordered United States forces to be dispatched to the region, in response to offensives in Iraq conducted by the Islamic State of Iraq and the Levant (ISIL). At the invitation of the Iraqi government, American troops went to assess Iraqi forces and the threat posed by ISIL"]]
 
     ])
-
+// colors
 var colorMap = new Map([
     ["UnitedStates", d3.rgb(205,194,211)],
     ["UnitedKingdom", d3.rgb(139,131,157)],
@@ -89,45 +91,50 @@ var colorMap = new Map([
     ["Russia", d3.rgb(169,122,132)]
     ])
 
+// copy of all data file list
 var dynamicFileList = allDataFileList.slice();
 
+// draw graph
 function plot() {
 
 
-
+    // set a responsive window that can zoom in and out
+    // set responsive comes from https://stackoverflow.com/questions/13632169/using-viewbox-to-resize-svg-depending-on-the-window-size
     var svg = d3.select(".svg-container")
     .append("svg")
     .attr("viewBox", "0 0 " + pageWidth.toString() + " " + pageHeight.toString())
     .attr("preserveAspectRatio", "xMinYMin meet")
-
+    // zoom in and out comes from https://coderwall.com/p/psogia/simplest-way-to-add-zoom-pan-on-d3-js
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .call(d3.zoom().on("zoom", function () {
        svg.attr("transform", d3.event.transform)
     }))
     .append("g");
 
+    // draw x-axis and y-axis responsive
     var xScale = d3.scaleTime().range([0, width]).domain([minX, maxX]);
     var yScale = d3.scaleLinear().range([height, 0]).domain([minY, maxY]);
     var xAxis = d3.axisBottom().scale(xScale).tickFormat(d3.format(".0f"));
     var yAxis = d3.axisLeft().scale(yScale);
-
+    //
     drawAxes(svg, xAxis, yAxis)
 
 
-
+    //draw lines
     for (i = 0; i < 8; i++) {
         drawLine(i, svg, xScale, yScale)
     }
-
+    //draw circles: historical events
     for (j = 0; j < 8; j++) {
         drawCircle(j, svg, xScale, yScale)
     }
-
+    //draw legends
     for (k = 0; k < 8; k++) {
         drawLegend(k, svg, xScale, yScale)
     }
 }
 
+// draw x-axis and y-axis
 function drawAxes(svg, xAxis, yAxis) {
     // Add x-axis
     svg.append("g")
@@ -144,7 +151,7 @@ function drawAxes(svg, xAxis, yAxis) {
     .attr('y', -45)
     .attr('transform', 'rotate(-90)')
     .attr('text-anchor', 'middle')
-    .text('Percentage of total GDP (%)')
+    .text('% of total GDP spent on military purpose')
 
     svg.append('text')
     .attr('class', 'label')
@@ -154,12 +161,13 @@ function drawAxes(svg, xAxis, yAxis) {
     .text('Years')
 }
 
+// draw lines
 function drawLine (index, svg, x, y) {
     var filename = allDataFileList[index];
     var id = filenameToId(filename);
     var color = colorMap.get(filenameToId(filename));
 
-
+    // draw color shade below the line
     var area = d3.area()
     .x(function(d) { return x(d.Year); })
     .y0(height)
@@ -173,7 +181,6 @@ function drawLine (index, svg, x, y) {
 
     d3.csv(filename).then(function(data) {
         // format the data
-
 
         data.forEach(function(d) {
             d.Year = d.Year;
@@ -208,18 +215,20 @@ function drawLine (index, svg, x, y) {
     });
 }
 
+// grey out other lines when hovering over a specific line
 function turnOff(id) {
     d3.select("#line" + id).attr("stroke", "grey").attr("opacity", 0.2)
     d3.selectAll(".circle" + id).attr("fill", "grey").attr("opacity", 0.2)
     d3.select("#area" + id).attr("fill", "grey").attr("opacity", 0.1)
 }
-
+// undo the grey out
 function turnOn(id, color) {
     d3.select("#line" + id).attr("stroke", color).attr("opacity", 1)
     d3.selectAll(".circle" + id).attr("fill", color).attr("opacity", 1)
     d3.select("#area" + id).attr("fill", color).attr("opacity", 0.3)
 }
-
+// do the animation
+// i copyed this from https://stackoverflow.com/questions/13973267/how-do-i-animate-a-line-using-d3-js
 function animateLine(path) {
     var totalLength = path.node().getTotalLength();
     path.attr("stroke-dasharray", totalLength + " " + totalLength)
@@ -229,18 +238,18 @@ function animateLine(path) {
     .ease(d3.easeLinear)
     .attr("stroke-dashoffset", 0);
 }
-
+// draw historical events
 function drawCircle(index, svg, x, y) {
     var eventsFileName = eventsFileList[index];
     var color = colorMap.get(filenameToId(eventsFileName));
 
     d3.csv(eventsFileName).then(function(data) {
-
+        // format the data
         data.forEach(function(d) {
             d.Year = d.Year;
             d.MilitaryExpenditure = +d.MilitaryExpenditure;
         });
-
+        // draw circle
         svg.selectAll(".circle")
         .data(data)
         .enter()
@@ -257,6 +266,7 @@ function drawCircle(index, svg, x, y) {
         .attr("cy", function(d) {
             return y(d.MilitaryExpenditure)
         })
+        //when hovering over, enlarge the circle
         .on("mouseover", function() {
             d3.select(this).attr("r", radius*2)
         })
@@ -266,55 +276,14 @@ function drawCircle(index, svg, x, y) {
         .on("click", circleClickHandler)
     });
 }
-
+// pop up window displaying information
 function circleClickHandler() {
     var title = descriptionMap.get(this.id)[0]
     var info = descriptionMap.get(this.id)[1]
     alert(title + "\n" + info)
 }
 
-function lineMouseOverHandler() {
-    console.log(dynamicFileList.length)
-    for (i = 0; i < dynamicFileList.length; i++) {
-        var id = filenameToId(dynamicFileList[i]);
-        if ("line" + id != this.id) {
-            turnOff(filenameToId(dynamicFileList[i]));
-        }
-    }
-}
-
-function lineMouseOutHandler() {
-    console.log(dynamicFileList.length)
-    for (i = 0; i < dynamicFileList.length; i++) {
-        var id = filenameToId(dynamicFileList[i]);
-        if ("line" + id != this.id) {
-            turnOn(filenameToId(dynamicFileList[i]), colorMap.get(id));
-
-        }
-    }
-}
-
-function areaMouseOverHandler() {
-    console.log(dynamicFileList.length)
-    for (i = 0; i < dynamicFileList.length; i++) {
-        var id = filenameToId(dynamicFileList[i]);
-        if ("area" + id != this.id) {
-            turnOff(filenameToId(dynamicFileList[i]));
-
-        }
-    }
-}
-
-function areaMouseOutHandler() {
-    console.log(dynamicFileList.length)
-    for (i = 0; i < dynamicFileList.length; i++) {
-        var id = filenameToId(dynamicFileList[i]);
-        if ("area" + id != this.id) {
-            turnOn(filenameToId(dynamicFileList[i]), colorMap.get(id));
-        }
-    }
-}
-
+// draw legends: turning on and off when clicking
 function drawLegend(index, svg, x, y) {
     var filename = allDataFileList[index]
     var color = colorMap.get(filenameToId(filename));
@@ -331,8 +300,11 @@ function drawLegend(index, svg, x, y) {
     .attr("stroke-width", 8)
     .attr("fill", color)
     .on("click", function() {
+        // get opacity
         var opacity = d3.select("#line" + id).attr("opacity")
+        // if opacity equals to 1, then means the layer is on
         if (opacity == 1) {
+            // turn off layer: line, area, circle
             var i = dynamicFileList.indexOf(IdToAllDataFilename(id))
             dynamicFileList.splice(i, 1);
 
@@ -356,6 +328,7 @@ function drawLegend(index, svg, x, y) {
             .on('mouseout', null)
 
         } else {
+            // turn on
             dynamicFileList.push(IdToAllDataFilename(id))
 
             d3.select("#legend" + id)
@@ -381,21 +354,61 @@ function drawLegend(index, svg, x, y) {
 
 
     })
-
+    // annotation
     svg.append("text")
     .attr("x", width + 40)
     .attr("y", -90 + index * 60)
     .text(id)
     .style("font-size", "20px")
-    .attr("alignment-baseline","middle")
 }
 
+// when hovering over the line, highlight
+function lineMouseOverHandler() {
+    for (i = 0; i < dynamicFileList.length; i++) {
+        var id = filenameToId(dynamicFileList[i]);
+        if ("line" + id != this.id) {
+            turnOff(filenameToId(dynamicFileList[i]));
+        }
+    }
+}
+// when the mouse leaves the line, go back to default
+function lineMouseOutHandler() {
+    for (i = 0; i < dynamicFileList.length; i++) {
+        var id = filenameToId(dynamicFileList[i]);
+        if ("line" + id != this.id) {
+            turnOn(filenameToId(dynamicFileList[i]), colorMap.get(id));
+
+        }
+    }
+}
+
+function areaMouseOverHandler() {
+    for (i = 0; i < dynamicFileList.length; i++) {
+        var id = filenameToId(dynamicFileList[i]);
+        if ("area" + id != this.id) {
+            turnOff(filenameToId(dynamicFileList[i]));
+
+        }
+    }
+}
+
+function areaMouseOutHandler() {
+    for (i = 0; i < dynamicFileList.length; i++) {
+        var id = filenameToId(dynamicFileList[i]);
+        if ("area" + id != this.id) {
+            turnOn(filenameToId(dynamicFileList[i]), colorMap.get(id));
+        }
+    }
+}
+
+// change file name to country name
 function filenameToId(filename) {
     var index1 = filename.indexOf("_");
     var index2 = filename.indexOf(".");
     return filename.slice(index1+1, index2);
 }
 
+// change country name to file name
 function IdToAllDataFilename(id) {
     return "allData_" + id + ".csv";
 }

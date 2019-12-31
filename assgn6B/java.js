@@ -109,7 +109,9 @@ function recordChoice(){
     }
 }
 
+
 function displayCart(){
+    //get rolls in cart
     rolls = JSON.parse(sessionStorage.getItem('cart'));
     //if something in cart
     if (rolls.length != 0){

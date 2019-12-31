@@ -136,6 +136,7 @@ function displayCart(){
             `;
             //update the glazing, flavor, qty of each product
             document.getElementsByClassName("selectedGlazing")[i].textContent = rolls[i].glazing;
+            console.log(document.getElementsByClassName("selectedFlavor")[i])
             document.getElementsByClassName("selectedFlavor")[i].textContent = rolls[i].flavor;
             document.getElementsByClassName("cont3")[i].textContent = rolls[i].qty;
         }
